@@ -24,4 +24,27 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
+router.post("/login", (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.redirect("/users/login");
+  }
+  User.findOne({ email }, (err, user) => {
+    if (err) return next(err);
+    if (!user) {
+      return res.redirect("/users/login");
+    }
+    user.verifyPassword(password, (err, result) => {
+      if (err) return next(err);
+
+      if (!result) {
+        return res.redirect("/users/login");
+      }
+
+      req.session.userId = user.id;
+      res.redirect("/users");
+    });
+  });
+});
+
 module.exports = router;
