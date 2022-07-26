@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+  <body>
+    <div class="container mx-auto h-screen flex items-center justify-center">
+      <div class="max-w-md w-full mx-auto shadow-md bg-slate-50 p-8 rounded">
+        <h1 class="text-center text-2xl">Login</h1>
+        <form action="/users/login" method="post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="block border-b w-full my-4 py-4 px-2"
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            class="block border-b w-full my-4 py-4 px-2"
+          />
+          <input
+            type="submit"
+            value="Login"
+            class="bg-green-200 text-green-400 block mx-auto my-4 p-4 rounded-md cursor-pointer hover:bg-green-300 hover:text-green-600"
+          />
+        </form>
+        <% if(error) { %>
+        <p class="text-red-400"><%= error %></p>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
